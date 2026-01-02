@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amarill@s por el Mundo – Tienda</title>
+    <style>
+        /* Reset y base minimalista */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #111111;
+            background: #FFFFFF;
+            overflow-x: hidden;
+        }
+
+        :root {
+            --amarillo: #FFD700;
+            --negro: #111111;
+            --blanco: #FFFFFF;
+            --gris-oscuro: #1A1A1A;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 60px 0 40px;
+        }
+
+        .logo {
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            font-weight: 700;
+            color: var(--negro);
+            letter-spacing: -0.02em;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 100px 0 120px;
+            background: var(--blanco);
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: var(--negro);
+        }
+
+        .hero p {
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            color: var(--gris-oscuro);
+            margin-bottom: 40px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 18px 40px;
+            background: transparent;
+            color: var(--amarillo);
+            border: 2px solid var(--amarillo);
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: var(--amarillo);
+            color: var(--negro);
+        }
+
+        .btn-primary {
+            background: var(--amarillo);
+            color: var(--negro);
+            border-color: var(--amarillo);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--amarillo);
+        }
+
+        .catalog {
+            padding: 120px 0 100px;
+        }
+
+        .catalog h2 {
+            text-align: center;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 100px;
+            color: var(--negro);
+        }
+
+        .single-product {
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .product-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+        }
+
+        .product-name {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            color: var(--negro);
+        }
+
+        .product-price {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--amarillo);
+            margin-bottom: 30px;
+        }
+
+        .how-to-buy {
+            padding: 100px 0;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .how-to-buy h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 50px;
+        }
+
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            font-size: 1.2rem;
+        }
+
+        .step {
+            padding: 25px;
+            border-left: 4px solid var(--amarillo);
+            opacity: 0.9;
+        }
+
+        .step strong {
+            color: var(--amarillo);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .order-form {
+            padding: 100px 0;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .order-form h2 {
+            text-align: center;
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 50px;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--negro);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 18px;
+            border: 2px solid #E5E5E5;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--amarillo);
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .footer {
+            padding: 60px 0 40px;
+            text-align: center;
+            border-top: 1px solid #E5E5E5;
+            color: var(--gris-oscuro);
+        }
+
+        .footer p {
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .hero {
+                padding: 80px 0 100px;
+            }
+            
+            .catalog {
+                padding: 80px 0 80px;
+            }
+            
+            .product-image {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">Amarill@s por el Mundo – Tienda</h1>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <h1>Pasión amarilla en tu casa</h1>
+            <p>Productos desde nuestro almacén</p>
+            <a href="#product" class="btn btn-primary">Ver producto</a>
+        </div>
+    </section>
+
+    <!-- PRODUCTO ÚNICO -->
+    <section class="catalog" id="product">
+        <div class="container">
+            <h2>Nuestro producto estrella</h2>
+            <div class="single-product">
+                <!-- FOTO: puedes cambiar la URL por otra cuando quieras -->
+                <img src="https://i.postimg.cc/2VRZ2Ts8/Ax-M.jpg" alt="Amarill@s por el Mundo - Producto especial" class="product-image">
+                <h3 class="product-name">AxM Especial</h3>
+                <div class="product-price">25€</div>
+                <button class="btn add-to-cart" data-product="AxM Especial - 25€" style="font-size: 1.3rem; padding: 22px 50px;">Añadir al pedido</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CÓMO COMPRAR -->
+    <section class="how-to-buy">
+        <div class="container">
+            <h2>Cómo comprar</h2>
+            <div class="steps">
+                <div class="step">
+                    <strong>1. Haz clic en "Añadir al pedido"</strong>
+                    Reserva tu producto
+                </div>
+                <div class="step">
+                    <strong>2. Haz transferencia bancaria</strong>
+                    Recibirás por email los datos de la cuenta para el pago.
+                </div>
+                <div class="step">
+                    <strong>3. Recibe en tu casa</strong>
+                    Envío desde almacén en 24-48h
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FORMULARIO PEDIDO -->
+    <section class="order-form">
+        <div class="container">
+            <h2>Tu pedido</h2>
+            <form id="orderForm">
+                <div class="form-group">
+                    <label for="name">Nombre completo</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Teléfono</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">Dirección completa de envío</label>
+                    <textarea id="address" name="address" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="products">Detalles del pedido<br><small>Ejemplo: 2 unidades AxM Especial</small></label>
+                    <textarea id="products" name="products" placeholder="Escribe aquí tu pedido..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1.2rem;">Enviar pedido</button>
+            </form>
+            <div id="successMessage" style="display: none; margin-top: 30px; padding: 20px; background: #F0F9F0; border-radius: 8px; text-align: center;">
+                ✅ ¡Pedido recibido! Te enviaremos los datos bancarios por email en 5 minutos.
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <p>Amarill@s por el Mundo – Tienda</p>
+            <p>✅ Pagos solo por transferencia bancaria</p>
+            <p>contacto@amarillosporelmundo.es</p>
+        </div>
+    </footer>
+
+    <script>
+        // Botón añadir al carrito (efecto visual simple)
+        const addBtn = document.querySelector('.add-to-cart');
+        addBtn.addEventListener('click', function() {
+            this.textContent = '¡Añadido! ✓';
+            this.style.background = '#4ADE80';
+            this.style.color = 'white';
+            
+            setTimeout(() => {
+                this.textContent = 'Añadir al pedido';
+                this.style.background = 'transparent';
+                this.style.color = '#FFD700';
+            }, 2000);
+        });
+
+        // Formulario simulado
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            setTimeout(() => {
+                document.getElementById('successMessage').style.display = 'block';
+                this.reset();
+                window.scrollTo({top: 0, behavior: 'smooth'});
+            }, 1000);
+        });
+
+        // Smooth scroll enlaces internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
